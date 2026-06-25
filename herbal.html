@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chinese Herbal Medicine | Balance Acupuncture</title>
+  <meta name="description" content="Personalised Chinese herbal medicine prescriptions at Balance Acupuncture — supporting your wellbeing alongside acupuncture treatment, or as a standalone therapy." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root{--cream:#f9f6f1;--warm-white:#fdfbf8;--sage:#7eaa85;--sage-light:#a8c8ab;--sage-dark:#4e7a58;--stone:#c9bfae;--charcoal:#3a3530;--mid-grey:#524f4c;--light-grey:#9e9894;--border:#e4ddd4;--font-serif:'Cormorant Garamond',Georgia,serif;--font-sans:'Inter',system-ui,sans-serif;--font-hand:'Caveat',cursive;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:var(--font-sans);font-weight:300;font-size:17px;line-height:1.8;color:var(--charcoal);background:var(--warm-white);}
+    img{max-width:100%;display:block;}a{color:inherit;text-decoration:none;}
+    h1,h2,h3,h4{font-family:var(--font-serif);font-weight:300;letter-spacing:.01em;line-height:1.2;color:var(--charcoal);}
+    h1{font-size:clamp(2.4rem,5vw,4rem);}h2{font-size:clamp(2.3rem,4vw,3.4rem);}
+    h3{font-size:clamp(1.5rem,2.5vw,2.1rem);}
+    h4{font-size:1.1rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;}
+    p{color:var(--mid-grey);font-size:.975rem;line-height:1.9;}
+    .container{max-width:1120px;margin:0 auto;padding:0 2rem;}
+    .section{padding:5rem 0;}.section--alt{background:var(--cream);}
+    .eyebrow{font-family:var(--font-hand);font-size:1.35rem;font-weight:500;letter-spacing:.02em;color:var(--sage-dark);display:block;margin-bottom:.8rem;}
+    .divider{width:40px;height:1px;background:var(--sage);margin:1.5rem auto;}.divider--left{margin-left:0;}
+    .btn{display:inline-block;padding:.85rem 2.2rem;font-family:var(--font-sans);font-size:.75rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;border:1px solid currentColor;transition:all .3s ease;cursor:pointer;}
+    .btn--sage{color:var(--sage-dark);border-color:var(--sage-dark);background:transparent;}.btn--sage:hover{background:var(--sage-dark);color:var(--warm-white);}
+    .btn--filled{background:var(--sage-dark);color:var(--warm-white);border-color:var(--sage-dark);}.btn--filled:hover{background:var(--sage);border-color:var(--sage);}
+    .site-header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(253,251,248,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+    .site-header.scrolled{box-shadow:0 2px 20px rgba(58,53,48,.08);}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;max-width:1120px;margin:0 auto;padding:0 2rem;}
+    .nav-logo{font-family:var(--font-serif);font-size:1.35rem;font-weight:400;letter-spacing:.04em;color:var(--charcoal);}
+    .nav-logo span{color:var(--sage);}
+    .nav-links{display:flex;align-items:center;gap:2.2rem;list-style:none;}
+    .nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--mid-grey);transition:color .2s;position:relative;}
+    .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:0;height:1px;background:var(--sage);transform:scaleX(0);transition:transform .25s ease;}
+    .nav-links a:hover{color:var(--charcoal);}.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}.nav-links a.active{color:var(--charcoal);}
+    .nav-cta{font-size:.72rem!important;font-weight:500!important;letter-spacing:.15em!important;text-transform:uppercase!important;padding:.6rem 1.4rem!important;background:var(--sage-dark)!important;color:var(--warm-white)!important;border-radius:1px!important;}
+    .nav-cta:hover{background:var(--sage)!important;}.nav-cta::after{display:none!important;}
+    .nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+    .nav-toggle span{display:block;width:22px;height:1px;background:var(--charcoal);}
+    .site-footer{background:var(--charcoal);padding:4rem 0 2rem;}
+    .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+    .footer-brand h3{font-family:var(--font-serif);font-size:1.3rem;color:var(--warm-white);margin-bottom:1rem;font-weight:300;}
+    .footer-brand p{color:rgba(255,255,255,.45);font-size:.82rem;}
+    .footer-col h4{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-light);margin-bottom:1.2rem;font-family:var(--font-sans);}
+    .footer-col ul{list-style:none;}.footer-col ul li{margin-bottom:.6rem;}
+    .footer-col ul li a{color:rgba(255,255,255,.5);font-size:.82rem;transition:color .2s;}.footer-col ul li a:hover{color:var(--sage-light);}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;display:flex;justify-content:space-between;align-items:center;font-size:.75rem;color:rgba(255,255,255,.3);}
+    .footer-social{display:flex;gap:1rem;}
+    .footer-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:.75rem;transition:all .2s;}
+    .footer-social a:hover{border-color:var(--sage-light);color:var(--sage-light);}
+    @media(max-width:900px){
+      .nav-links{display:none;}.nav-toggle{display:flex;}
+      .nav-links.open{display:flex;flex-direction:column;position:fixed;top:72px;left:0;right:0;background:var(--warm-white);padding:2rem;gap:1.4rem;border-bottom:1px solid var(--border);z-index:99;}
+      .footer-grid{grid-template-columns:1fr 1fr;gap:2rem;}
+      .herbal-intro-grid{grid-template-columns:1fr!important;}
+      .process-steps{grid-template-columns:1fr!important;}
+      .conditions-two-col{grid-template-columns:1fr!important;}
+    }
+    @media(max-width:600px){.footer-grid{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;gap:1rem;text-align:center;}}
+
+    /* ── Herbal page specific ── */
+    .herbal-hero{
+      padding:9rem 0 0;
+      background:linear-gradient(160deg, #edf2ed 0%, var(--cream) 60%);
+      border-bottom:1px solid var(--border);
+      overflow:hidden;
+      position:relative;
+    }
+    .herbal-hero-inner{display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:end;padding-bottom:0;}
+    .herbal-hero-text{padding-bottom:5rem;}
+    .herbal-hero-text h1{margin-bottom:1.2rem;font-style:italic;}
+    .herbal-hero-text p{max-width:580px;font-size:1.05rem;margin-bottom:1.4rem;}
+    .herbal-hero-visual{
+      align-self:stretch;
+      background:linear-gradient(160deg,#c8d8c8 0%,#ddd5c5 100%);
+      min-height:380px;
+      display:flex;align-items:center;justify-content:center;
+      position:relative;
+    }
+    .herbal-hero-visual svg{opacity:.25;}
+
+    .intro-section{padding:5rem 0;}
+    .herbal-intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+    .herbal-intro-img{
+      aspect-ratio:4/5;
+      background:linear-gradient(160deg,#d4e0d4 0%,var(--stone) 100%);
+      display:flex;align-items:center;justify-content:center;
+    }
+    .herbal-intro-img svg{opacity:.2;}
+    .herbal-intro-text h2{margin-bottom:1.2rem;}
+    .herbal-intro-text p{margin-bottom:1.2rem;}
+
+    /* Process */
+    .process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);}
+    .process-step{padding:2.5rem 2rem;border-right:1px solid var(--border);position:relative;}
+    .process-step:last-child{border-right:none;}
+    .process-step::before{
+      content:attr(data-step);
+      font-family:var(--font-serif);
+      font-size:3.5rem;
+      color:var(--sage-light);
+      display:block;
+      line-height:1;
+      margin-bottom:.8rem;
+    }
+    .process-step h4{font-family:var(--font-serif);font-size:1.05rem;font-weight:400;letter-spacing:0;text-transform:none;font-style:italic;margin-bottom:.7rem;}
+    .process-step p{font-size:.85rem;}
+
+    /* Conditions */
+    .conditions-two-col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);}
+    .condition-item{background:var(--warm-white);padding:1.8rem 2rem;}
+    .condition-item h4{font-family:var(--font-serif);font-size:1rem;font-weight:400;letter-spacing:0;text-transform:none;font-style:italic;color:var(--charcoal);margin-bottom:.4rem;}
+    .condition-item p{font-size:.82rem;}
+
+    /* Safety */
+    .safety-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;}
+    .safety-card{padding:2rem;border:1px solid var(--border);text-align:center;}
+    .safety-icon{font-family:var(--font-serif);font-size:2.5rem;font-style:italic;color:var(--sage);margin-bottom:.8rem;}
+    .safety-card h4{font-family:var(--font-serif);font-size:1rem;font-weight:400;letter-spacing:0;text-transform:none;font-style:italic;margin-bottom:.6rem;}
+    .safety-card p{font-size:.85rem;}
+
+    .quote-band{background:var(--charcoal);padding:4rem 0;text-align:center;}
+    .quote-band blockquote{font-family:var(--font-serif);font-size:clamp(1.3rem,2.5vw,1.9rem);font-weight:300;font-style:italic;color:var(--warm-white);max-width:700px;margin:0 auto;line-height:1.5;}
+    .quote-band blockquote cite{font-family:var(--font-sans);font-size:.72rem;font-style:normal;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.4);display:block;margin-top:1.2rem;}
+
+    .cta-banner{background:var(--sage-dark);padding:5rem 0;text-align:center;}
+    .cta-banner h2{color:var(--warm-white);margin-bottom:1rem;}
+    .cta-banner p{color:rgba(255,255,255,.7);margin-bottom:2rem;max-width:560px;margin-left:auto;margin-right:auto;}
+    .cta-tel{font-family:var(--font-serif);font-size:1.8rem;font-style:italic;color:rgba(255,255,255,.9);display:block;margin-bottom:2rem;}
+    .cta-actions{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;}
+
+    /* ── Photo gallery (crossfade) ── */
+    .herbal-intro-img {
+      aspect-ratio: 4/5;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #d4e0d4 0%, var(--stone) 100%);
+    }
+    .gallery-slide {
+      position: absolute; inset: 0;
+      opacity: 0; transition: opacity 1.4s ease;
+    }
+    .gallery-slide.active { opacity: 1; }
+    .gallery-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-dots {
+      position: absolute; bottom: 1.2rem; left: 0; right: 0;
+      display: flex; justify-content: center; gap: 0.55rem; z-index: 2;
+    }
+    .gallery-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.4);
+      border: 1px solid rgba(255,255,255,0.65);
+      cursor: pointer; padding: 0;
+      transition: background 0.3s;
+    }
+    .gallery-dot.active { background: rgba(255,255,255,0.95); }
+    .gallery-dot:hover { background: rgba(255,255,255,0.75); }
+
+    @media(max-width:900px){
+      .herbal-hero-inner{grid-template-columns:1fr;}.herbal-hero-visual{display:none;}
+      .process-steps{grid-template-columns:1fr 1fr;}
+      .safety-grid{grid-template-columns:1fr;}
+      .herbal-intro-img { aspect-ratio: 3/2; min-height: 0; }
+    }
+    @media(max-width:600px){.process-steps{grid-template-columns:1fr;}.process-step{border-right:none;border-bottom:1px solid var(--border);}}
+  </style>
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <nav class="nav-inner">
+    <a href="index.html" class="nav-logo">Balance <span>Acupuncture</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Treatments</a></li>
+      <li><a href="herbal.html" class="active">Herbal Medicine</a></li>
+      <li><a href="conditions.html">Conditions</a></li>
+      <li><a href="fees.html">Fees</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- Hero -->
+<section class="herbal-hero">
+  <div class="container herbal-hero-inner">
+    <div class="herbal-hero-text">
+      <span class="eyebrow">A 2,500-year tradition</span>
+      <h1>Chinese Herbal Medicine</h1>
+      <div class="divider divider--left"></div>
+      <p>One of the world's most sophisticated and time-tested systems of natural medicine — now available as a core part of your holistic care at Balance Acupuncture.</p>
+      <p>Every prescription is built around you. Not your symptoms alone — but you: your constitution, your history, your pattern of health and your goals.</p>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+        <a href="contact.html" class="btn btn--filled">Book a Consultation</a>
+        <a href="#what-is-herbal" class="btn btn--sage">Learn More</a>
+      </div>
+    </div>
+    <div class="herbal-hero-visual" style="padding:0;overflow:hidden;">
+      <img src="images/herb-yinyang.jpg" alt="Chinese herbs — roots, goji berries, bark and seeds — arranged in a yin-yang pattern" style="width:100%;height:100%;object-fit:cover;" />
+    </div>
+  </div>
+</section>
+
+<!-- What is herbal medicine -->
+<section class="intro-section" id="what-is-herbal">
+  <div class="container">
+    <div class="herbal-intro-grid">
+      <div class="herbal-intro-img" id="herbal-gallery">
+        <div class="gallery-slide active">
+          <img src="images/herbal-clinic-1.jpg" alt="Close-up of glass herb jars on backlit shelves at Balance Acupuncture" />
+        </div>
+        <div class="gallery-slide">
+          <img src="images/herbal-clinic-2.jpg" alt="Balance Acupuncture treatment room showing the full herb dispensary cabinet" />
+        </div>
+        <div class="gallery-slide">
+          <img src="images/herbal-clinic-3.jpg" alt="Chinese herbal medicine jars at Balance Acupuncture, warm backlit shelves" />
+        </div>
+        <div class="gallery-slide">
+          <img src="images/herbal-clinic-4.jpg" alt="Balance Acupuncture clinic interior with yin-yang ceiling feature" />
+        </div>
+        <div class="gallery-dots">
+          <button class="gallery-dot active" data-idx="0" aria-label="Photo 1"></button>
+          <button class="gallery-dot" data-idx="1" aria-label="Photo 2"></button>
+          <button class="gallery-dot" data-idx="2" aria-label="Photo 3"></button>
+          <button class="gallery-dot" data-idx="3" aria-label="Photo 4"></button>
+        </div>
+      </div>
+      <div class="herbal-intro-text">
+        <span class="eyebrow">What is it?</span>
+        <h2>Rooted in nature, tailored to you</h2>
+        <div class="divider divider--left"></div>
+        <p>Chinese herbal medicine can be used as a standalone treatment, or alongside acupuncture to help build on the work you and I do in clinic.</p>
+        <p>Each formula is chosen for you as an individual, looking at your symptoms, your overall health, and how things change over time. Unlike conventional medicines, which often focus on managing a specific symptom or diagnosis, Chinese herbal medicine takes a broader view — aiming to support the whole person and address root causes alongside the symptoms.</p>
+        <p>When professionally prescribed, Chinese herbal medicine offers a gentler, more personalised approach than conventional treatments, with formulas regularly adjusted to suit your needs and minimise unwanted effects wherever possible.</p>
+        <p>Chinese herbal medicine can be used alongside acupuncture to support your treatment between appointments and help build on the work we do in clinic.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it supports acupuncture -->
+<section class="section section--alt">
+  <div class="container">
+    <div style="max-width:700px;margin:0 auto 3.5rem;text-align:center;">
+      <span class="eyebrow">The integrated approach</span>
+      <h2>How herbal medicine supports acupuncture</h2>
+      <div class="divider"></div>
+      <p>Acupuncture and Chinese herbal medicine are the two primary branches of Traditional Chinese Medicine — and they are designed to work in concert. Together, they offer a depth of therapeutic care that neither achieves alone.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2rem;">
+      <div style="padding:2.5rem 2rem;background:var(--warm-white);border:1px solid var(--border);">
+        <div style="font-family:var(--font-serif);font-size:1.6rem;color:var(--sage);margin-bottom:1rem;font-style:italic;">Continuity</div>
+        <p style="font-size:.88rem;">Acupuncture works in the session. Herbal medicine works between sessions — maintaining and extending the therapeutic momentum so your body continues to respond and heal around the clock.</p>
+      </div>
+      <div style="padding:2.5rem 2rem;background:var(--warm-white);border:1px solid var(--border);">
+        <div style="font-family:var(--font-serif);font-size:1.6rem;color:var(--sage);margin-bottom:1rem;font-style:italic;">Depth</div>
+        <p style="font-size:.88rem;">Where acupuncture is particularly powerful for moving Qi and addressing structural imbalances, herbal medicine excels at nourishing, tonifying and addressing deep constitutional weaknesses that require sustained internal support.</p>
+      </div>
+      <div style="padding:2.5rem 2rem;background:var(--warm-white);border:1px solid var(--border);">
+        <div style="font-family:var(--font-serif);font-size:1.6rem;color:var(--sage);margin-bottom:1rem;font-style:italic;">Precision</div>
+        <p style="font-size:.88rem;">Your herbal prescription is reviewed and refined at every appointment. As your health picture changes, your formula evolves with it — ensuring treatment is always precisely matched to where you are right now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- The consultation process -->
+<section class="section">
+  <div class="container">
+    <div style="max-width:640px;margin:0 auto 3rem;text-align:center;">
+      <span class="eyebrow">The process</span>
+      <h2>Your herbal medicine journey</h2>
+      <div class="divider"></div>
+      <p>From your first conversation to your evolving prescription, here is how we approach herbal medicine at Balance Acupuncture.</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step" data-step="01">
+        <h4>Your consultation</h4>
+        <p>I take a thorough case history, exploring not only your presenting symptoms but your overall constitution — digestion, sleep, energy, emotional state, and more. This holistic picture forms the foundation of your prescription.</p>
+      </div>
+      <div class="process-step" data-step="02">
+        <h4>Your diagnosis</h4>
+        <p>Using the diagnostic principles of Chinese medicine — including tongue and pulse assessment — I identify your underlying pattern of disharmony. This is what your prescription is built around, not just your symptoms.</p>
+      </div>
+      <div class="process-step" data-step="03">
+        <h4>Your formula</h4>
+        <p>Your personalised herbal formula is prepared using carefully sourced, quality-tested herbs. I will explain what each formula is designed to address and answer any questions you have about the ingredients or process.</p>
+      </div>
+      <div class="process-step" data-step="04">
+        <h4>Ongoing review</h4>
+        <p>Your prescription is reassessed at every appointment and adjusted as your health evolves. Herbal medicine is dynamic — your formula should change as you do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Conditions -->
+<section class="section section--alt" id="conditions">
+  <div class="container">
+    <div style="max-width:640px;margin:0 auto 3rem;text-align:center;">
+      <span class="eyebrow">Conditions treated</span>
+      <h2>What herbal medicine can help with</h2>
+      <div class="divider"></div>
+      <p>Chinese herbal medicine has a rich clinical history in treating a broad spectrum of health conditions. The following are areas in which I have particular experience and clinical confidence.</p>
+    </div>
+    <div class="conditions-two-col">
+      <div class="condition-item">
+        <h4>Women's Health & Hormonal Balance</h4>
+        <p>Menstrual irregularities, PMS, PCOS, endometriosis, perimenopause, menopause, fertility support — Chinese herbal medicine has a particularly deep tradition in this area.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Digestive Health</h4>
+        <p>IBS, bloating, reflux, constipation, diarrhoea, weak digestion, nausea — herbal formulas can gently and profoundly regulate and restore digestive function.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Stress, Anxiety & Emotional Wellbeing</h4>
+        <p>Chronic stress, anxiety, low mood, emotional exhaustion — herbal medicine can nourish the nervous system and support a calmer, more resilient state of mind.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Sleep & Fatigue</h4>
+        <p>Insomnia, disturbed sleep, chronic fatigue, low energy — herbal prescriptions work to address the root cause of depletion and support the body's natural restorative processes.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Skin Conditions</h4>
+        <p>Eczema, psoriasis, acne, urticaria — Chinese herbal medicine has a long and well-documented tradition in dermatology, addressing skin conditions from the inside out.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Respiratory & Immune Health</h4>
+        <p>Recurrent colds, hayfever, allergic rhinitis, asthma — herbal medicine can strengthen immune function and reduce hypersensitivity responses over time.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Pain & Inflammation</h4>
+        <p>Chronic pain, arthritis, fibromyalgia, headaches — herbal formulas with anti-inflammatory and circulation-promoting properties can be profoundly effective for pain conditions.</p>
+      </div>
+      <div class="condition-item">
+        <h4>Reproductive & Fertility Support</h4>
+        <p>Male and female fertility, pregnancy preparation, hormonal optimisation — herbal medicine is frequently used alongside acupuncture to support reproductive health and conception.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quote -->
+<div class="quote-band">
+  <div class="container">
+    <blockquote>
+      Chinese herbal medicine doesn't treat your diagnosis — it treats you. Two people with the same condition may have entirely different prescriptions, because the aim is always to restore your individual balance.
+      <cite>— Sue, Balance Acupuncture</cite>
+    </blockquote>
+  </div>
+</div>
+
+<!-- Safety & sourcing -->
+<section class="section">
+  <div class="container">
+    <div style="max-width:640px;margin:0 auto 3rem;text-align:center;">
+      <span class="eyebrow">Safety & quality</span>
+      <h2>Professional oversight you can trust</h2>
+      <div class="divider"></div>
+      <p>Chinese herbal medicine, when prescribed by a qualified and registered practitioner, is a safe and rigorously practised form of natural medicine. I adhere to the highest standards of professional conduct and sourcing.</p>
+    </div>
+    <div class="safety-grid">
+      <div class="safety-card">
+        <div class="safety-icon">Q</div>
+        <h4>Quality-tested herbs</h4>
+        <p>All herbs are sourced from reputable suppliers with full quality testing and traceability. Only herbs free from contaminants and correctly identified are used in your prescription.</p>
+      </div>
+      <div class="safety-card">
+        <div class="safety-icon">R</div>
+        <h4>Qualified prescriber</h4>
+        <p>I am a qualified Chinese herbal medicine practitioner. I take a full case history, including current medications, before prescribing and monitor your response throughout treatment.</p>
+      </div>
+      <div class="safety-card">
+        <div class="safety-icon">E</div>
+        <h4>Ethical & sustainable</h4>
+        <p>We are committed to using herbs that are ethically sourced and sustainably harvested. No endangered species or products of animal origin are ever used.</p>
+      </div>
+    </div>
+    <div style="margin-top:3rem;padding:2.5rem 3rem;background:var(--cream);border:1px solid var(--border);max-width:800px;margin-left:auto;margin-right:auto;">
+      <span class="eyebrow">Important note</span>
+      <p>Always inform me of any prescription medications or supplements you are taking before beginning herbal medicine. While Chinese herbs are natural, some can interact with pharmaceutical drugs and I will advise you accordingly. Your safety is always the first consideration.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--sage-light);">Take the first step</span>
+    <h2>Discover what herbal medicine can do for you</h2>
+    <p>Call for a free, informal chat to discuss your health picture and find out whether a personalised herbal prescription could support your wellbeing.</p>
+    <a href="tel:+447747065296" class="cta-tel">07747 065296</a>
+    <div class="cta-actions">
+      <a href="contact.html" class="btn btn--filled" style="background:var(--warm-white);color:var(--sage-dark);border-color:var(--warm-white);">Book a Consultation</a>
+      <a href="services.html" class="btn" style="color:rgba(255,255,255,.8);border-color:rgba(255,255,255,.4);">All Treatments</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Balance Acupuncture</h3>
+        <p>Professional acupuncture and Chinese herbal medicine in Barnsley, Doncaster and Pontefract.</p>
+        <div class="footer-social" style="margin-top:1.5rem;">
+          <a href="https://www.facebook.com/BalanceAcupuntcureYorkshire" target="_blank" rel="noopener">f</a>
+          <a href="https://www.instagram.com/sue.balanceacupuncture/" target="_blank" rel="noopener">in</a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Treatments</h4><ul>
+        <li><a href="services.html">Acupuncture</a></li>
+        <li><a href="herbal.html">Chinese Herbal Medicine</a></li>
+        <li><a href="services.html#cupping">Cupping & Guasha</a></li>
+        <li><a href="services.html#moxibustion">Moxibustion</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Information</h4><ul>
+        <li><a href="about.html">About Sue</a></li>
+        <li><a href="about.html#philosophy">Philosophy</a></li>
+        <li><a href="conditions.html">Conditions Treated</a></li>
+        <li><a href="fees.html">Fees</a></li>
+      </ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul>
+        <li><a href="contact.html">Book an Appointment</a></li>
+        <li><a href="tel:+447747065296">07747 065296</a></li>
+        <li><a href="mailto:sue@balanceacupuncture.uk">sue@balanceacupuncture.uk</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Balance Acupuncture. All rights reserved.</span>
+      <span>Member of the British Acupuncture Council (BAcC)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header=document.getElementById('site-header');
+  window.addEventListener('scroll',()=>header.classList.toggle('scrolled',window.scrollY>20));
+  const toggle=document.getElementById('nav-toggle');
+  const navLinks=document.getElementById('nav-links');
+  toggle.addEventListener('click',()=>navLinks.classList.toggle('open'));
+
+  // Photo gallery crossfade
+  (function(){
+    const gallery=document.getElementById('herbal-gallery');
+    if(!gallery)return;
+    const slides=gallery.querySelectorAll('.gallery-slide');
+    const dots=gallery.querySelectorAll('.gallery-dot');
+    let cur=0,timer;
+    function go(n){
+      slides[cur].classList.remove('active');
+      dots[cur].classList.remove('active');
+      cur=(n+slides.length)%slides.length;
+      slides[cur].classList.add('active');
+      dots[cur].classList.add('active');
+    }
+    function resetTimer(){ clearInterval(timer); timer=setInterval(()=>go(cur+1),5000); }
+    dots.forEach((d,i)=>d.addEventListener('click',()=>{ go(i); resetTimer(); }));
+    resetTimer();
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synology Deployment Guide | Balance Acupuncture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream:#f9f6f1;--warm-white:#fdfbf8;--sage:#8a9e8c;--sage-light:#b8c9b9;
+      --sage-dark:#5f7861;--charcoal:#3a3530;--mid-grey:#6b6460;--border:#e4ddd4;
+      --font-serif:'Cormorant Garamond',Georgia,serif;
+      --font-sans:'Inter',system-ui,sans-serif;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:var(--font-sans);font-weight:300;background:var(--warm-white);color:var(--charcoal);line-height:1.75;font-size:15px;}
+    h1,h2,h3{font-family:var(--font-serif);font-weight:300;}
+    p{color:var(--mid-grey);}
+    a{color:var(--sage-dark);}
+    code{font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;font-size:0.85em;background:#eee;padding:0.15em 0.4em;border-radius:3px;color:#333;}
+    pre{background:var(--charcoal);color:#d4e8d4;padding:1.5rem;overflow-x:auto;font-family:'SFMono-Regular',Consolas,monospace;font-size:0.82rem;line-height:1.7;margin:1rem 0;}
+    pre code{background:none;padding:0;color:inherit;}
+
+    .header{background:var(--charcoal);padding:3rem 2rem;text-align:center;}
+    .header h1{color:var(--warm-white);font-size:2rem;margin-bottom:0.4rem;}
+    .header p{color:rgba(255,255,255,0.5);font-size:0.88rem;}
+
+    .container{max-width:860px;margin:0 auto;padding:3rem 2rem;}
+
+    .phase{margin-bottom:4rem;}
+    .phase-label{
+      font-size:0.65rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;
+      color:var(--sage);display:block;margin-bottom:0.6rem;
+    }
+    .phase h2{font-size:1.6rem;font-style:italic;margin-bottom:1rem;}
+    .phase>p{margin-bottom:1.2rem;}
+
+    .step-list{list-style:none;counter-reset:steps;margin:1rem 0;}
+    .step-list li{
+      counter-increment:steps;
+      padding:0.8rem 0 0.8rem 2.8rem;
+      position:relative;
+      border-bottom:1px solid var(--border);
+      color:var(--mid-grey);
+      font-size:0.9rem;
+    }
+    .step-list li:last-child{border-bottom:none;}
+    .step-list li::before{
+      content:counter(steps);
+      position:absolute;left:0;top:0.8rem;
+      font-family:var(--font-serif);font-size:1.1rem;color:var(--sage);
+    }
+    .step-list li strong{color:var(--charcoal);font-weight:500;}
+
+    .tip{
+      background:linear-gradient(135deg,#e8ede8 0%,var(--cream) 100%);
+      border-left:3px solid var(--sage);
+      padding:1.2rem 1.5rem;
+      margin:1.2rem 0;
+      font-size:0.875rem;
+    }
+    .tip strong{color:var(--charcoal);display:block;margin-bottom:0.25rem;}
+
+    .warn{
+      background:#fdf3e8;
+      border-left:3px solid #c87941;
+      padding:1.2rem 1.5rem;
+      margin:1.2rem 0;
+      font-size:0.875rem;
+    }
+    .warn strong{color:#7a4820;display:block;margin-bottom:0.25rem;}
+
+    .file-tree{
+      background:var(--charcoal);
+      color:#b8c9b9;
+      padding:1.5rem;
+      font-family:monospace;
+      font-size:0.82rem;
+      line-height:1.9;
+      margin:1rem 0;
+    }
+    .file-tree .dir{color:#d4e8d4;font-weight:bold;}
+    .file-tree .comment{color:rgba(255,255,255,0.3);}
+
+    table{width:100%;border-collapse:collapse;margin:1rem 0;font-size:0.86rem;}
+    th{background:var(--charcoal);color:white;padding:0.7rem 1rem;text-align:left;font-weight:400;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;}
+    td{padding:0.7rem 1rem;border-bottom:1px solid var(--border);color:var(--mid-grey);}
+    tr:last-child td{border-bottom:none;}
+    tr:nth-child(even) td{background:var(--cream);}
+
+    hr{border:none;border-top:1px solid var(--border);margin:3rem 0;}
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Synology Deployment Guide</h1>
+  <p>Balance Acupuncture — hosting the website on a Synology NAS</p>
+</div>
+
+<div class="container">
+
+  <!-- Overview -->
+  <div class="phase">
+    <span class="phase-label">Overview</span>
+    <h2>What you'll need</h2>
+    <p>This website is entirely static HTML — no database, no backend framework. It runs on any web server that can serve files. On a Synology NAS, the simplest approach is the <strong>Web Station</strong> package with either Apache or Nginx.</p>
+
+    <table>
+      <thead><tr><th>Requirement</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td>Synology DSM</td><td>DSM 7.x recommended (DSM 6.x also works)</td></tr>
+        <tr><td>Package: Web Station</td><td>Install from Package Center — free</td></tr>
+        <tr><td>Web server backend</td><td>Nginx (recommended) or Apache HTTP Server 2.4</td></tr>
+        <tr><td>PHP</td><td>Not required — the site is static HTML</td></tr>
+        <tr><td>SSL certificate</td><td>Strongly recommended — use Let's Encrypt (built into DSM)</td></tr>
+        <tr><td>Contact form</td><td>Requires a Formspree account (free tier available) or similar service</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- File structure -->
+  <div class="phase">
+    <span class="phase-label">Step 1</span>
+    <h2>File structure</h2>
+    <p>Your complete website folder should look like this. All files sit at the root — no subdirectories needed for the core pages.</p>
+
+    <div class="file-tree">
+<span class="dir">balance-acupuncture/</span>           <span class="comment">&lt;-- this is your web root folder</span>
+├── index.html                   <span class="comment">&lt;-- homepage</span>
+├── about.html
+├── services.html
+├── herbal.html
+├── conditions.html
+├── fees.html
+├── contact.html
+├── privacy.html
+├── 404.html
+├── style.css                    <span class="comment">&lt;-- shared stylesheet</span>
+│
+└── <span class="dir">wix-embeds/</span>                  <span class="comment">&lt;-- optional, can leave out of web root</span>
+    ├── wix-guide.html
+    ├── wix-head-code.html
+    └── embed-*.html
+    </div>
+
+    <div class="tip">
+      <strong>Tip — keep wix-embeds out of the public web root.</strong> The <code>wix-embeds/</code> folder is a working reference, not part of the live site. Either exclude it when uploading, or leave it — it won't cause any harm if it's there.
+    </div>
+  </div>
+
+  <!-- Install Web Station -->
+  <div class="phase">
+    <span class="phase-label">Step 2</span>
+    <h2>Install Web Station</h2>
+
+    <ol class="step-list">
+      <li>Log in to your Synology DSM interface (typically <code>http://your-nas-ip:5000</code>)</li>
+      <li>Open <strong>Package Center</strong> from the main menu</li>
+      <li>Search for <strong>Web Station</strong> and click Install</li>
+      <li>When prompted, also install <strong>Nginx HTTP Server 1.x</strong> (or Apache 2.4 — either works; Nginx is lighter)</li>
+      <li>Wait for installation to complete, then open Web Station from the main menu</li>
+    </ol>
+  </div>
+
+  <!-- Create virtual host -->
+  <div class="phase">
+    <span class="phase-label">Step 3</span>
+    <h2>Create a virtual host</h2>
+    <p>A virtual host tells Web Station which folder to serve when someone visits your domain or local address.</p>
+
+    <ol class="step-list">
+      <li>Open <strong>Web Station</strong></li>
+      <li>Click <strong>Web Service Portal</strong> in the left sidebar</li>
+      <li>Click <strong>Create → Create Service Portal</strong></li>
+      <li>Choose <strong>Name-based</strong> (if hosting on a domain) or <strong>Port-based</strong> (for local/IP access)</li>
+      <li>
+        Fill in the details:<br />
+        <strong>Portal type:</strong> Virtual Host<br />
+        <strong>Hostname:</strong> <code>balanceacupuncture.uk</code> (or your domain / local IP)<br />
+        <strong>Port:</strong> 80 (HTTP) — add 443 separately for HTTPS<br />
+        <strong>Document root:</strong> Select the folder where you upload your site files (see Step 4)<br />
+        <strong>HTTP back-end server:</strong> Nginx 1.x
+      </li>
+      <li>Click <strong>Create</strong></li>
+    </ol>
+
+    <div class="tip">
+      <strong>For local network access only</strong> (not on the public internet), use Port-based hosting. Set port to 8080 or any unused port. Access the site via <code>http://your-nas-ip:8080</code>.
+    </div>
+  </div>
+
+  <!-- Upload files -->
+  <div class="phase">
+    <span class="phase-label">Step 4</span>
+    <h2>Upload the website files</h2>
+
+    <ol class="step-list">
+      <li>Open <strong>File Station</strong> on your Synology</li>
+      <li>Navigate to <strong>web</strong> (the default Web Station folder — usually at <code>/volume1/web/</code>)</li>
+      <li>Create a new subfolder, e.g. <code>balance-acupuncture</code></li>
+      <li>Upload all the website files into this folder — you can drag and drop in File Station, or use an FTP/SFTP client such as FileZilla</li>
+      <li>Make sure <code>index.html</code> is at the root of the folder (not inside another subfolder)</li>
+      <li>Go back to Web Station → your virtual host → set the <strong>Document root</strong> to this <code>balance-acupuncture</code> folder</li>
+    </ol>
+
+    <div class="tip">
+      <strong>Using FileZilla or SFTP?</strong> Enable SSH on your Synology (Control Panel → Terminal &amp; SNMP → Enable SSH), then connect with FileZilla using SFTP, your NAS IP, port 22, and your admin credentials.
+    </div>
+  </div>
+
+  <!-- 404 page -->
+  <div class="phase">
+    <span class="phase-label">Step 5</span>
+    <h2>Configure the custom 404 page</h2>
+    <p>To make Nginx serve your custom <code>404.html</code> instead of its default error page, you need a small config snippet.</p>
+
+    <ol class="step-list">
+      <li>In Web Station, select your virtual host and click <strong>Edit</strong></li>
+      <li>Click the <strong>Advanced Settings</strong> tab</li>
+      <li>In the <strong>Custom configuration</strong> box, add:</li>
+    </ol>
+
+    <pre><code>error_page 404 /404.html;
+location = /404.html {
+    internal;
+}</code></pre>
+
+    <div class="tip">
+      <strong>Apache users:</strong> Instead, create a file called <code>.htaccess</code> in your web root folder with:
+      <pre style="margin-top:0.5rem;"><code>ErrorDocument 404 /404.html</code></pre>
+    </div>
+  </div>
+
+  <!-- SSL -->
+  <div class="phase">
+    <span class="phase-label">Step 6</span>
+    <h2>Enable HTTPS with Let's Encrypt</h2>
+    <p>If your Synology is accessible on the public internet with a real domain name, you can get a free SSL certificate automatically.</p>
+
+    <ol class="step-list">
+      <li>Make sure your domain's DNS A record points to your public IP address, and port 80 is forwarded on your router to the Synology</li>
+      <li>In DSM, go to <strong>Control Panel → Security → Certificate</strong></li>
+      <li>Click <strong>Add → Add a new certificate → Get a certificate from Let's Encrypt</strong></li>
+      <li>Enter your domain name (<code>balanceacupuncture.uk</code>) and email address</li>
+      <li>DSM will automatically obtain and renew the certificate</li>
+      <li>Go to <strong>Configure</strong> and assign the certificate to your Web Station service</li>
+      <li>In Web Station, add a second listener for port 443 (HTTPS) on your virtual host</li>
+    </ol>
+
+    <div class="warn">
+      <strong>Port forwarding required.</strong> For Let's Encrypt to work, port 80 must be forwarded from your router to your Synology. Check your router's admin panel (usually at <code>192.168.1.1</code>) and add a port forwarding rule: external port 80 → Synology IP, port 80. Repeat for port 443.
+    </div>
+
+    <p>To force all HTTP traffic to HTTPS automatically, add this to your Nginx custom configuration:</p>
+    <pre><code>if ($scheme = http) {
+    return 301 https://$host$request_uri;
+}</code></pre>
+  </div>
+
+  <!-- Contact form -->
+  <div class="phase">
+    <span class="phase-label">Step 7</span>
+    <h2>Set up the contact form (Formspree)</h2>
+    <p>The contact form uses <a href="https://formspree.io" target="_blank" rel="noopener">Formspree</a> to send submissions to your email — no server-side code needed.</p>
+
+    <ol class="step-list">
+      <li>Go to <a href="https://formspree.io" target="_blank" rel="noopener">formspree.io</a> and create a free account</li>
+      <li>Click <strong>+ New Form</strong> — name it "Balance Acupuncture Contact"</li>
+      <li>Set the notification email to <code>info@balanceacupuncture.uk</code></li>
+      <li>Copy the form endpoint — it looks like: <code>https://formspree.io/f/abcdefgh</code></li>
+      <li>Open <code>contact.html</code> in a text editor</li>
+      <li>Find the line: <code>action="https://formspree.io/f/YOUR_FORM_ID"</code></li>
+      <li>Replace <code>YOUR_FORM_ID</code> with your actual form ID, e.g. <code>action="https://formspree.io/f/abcdefgh"</code></li>
+      <li>Save the file and re-upload it to your Synology</li>
+      <li>Test the form — you should receive a confirmation email from Formspree and then the message at your inbox</li>
+    </ol>
+
+    <div class="tip">
+      <strong>Free tier limits:</strong> Formspree's free plan allows 50 submissions per month. For a small clinic this is typically sufficient. Paid plans start at around $10/month for unlimited submissions.
+    </div>
+
+    <div class="tip">
+      <strong>Alternative — mailto fallback:</strong> If you don't want to use Formspree, change the form action to <code>action="mailto:info@balanceacupuncture.uk"</code> and add <code>enctype="text/plain"</code>. This opens the user's default email client. It works, but is less reliable and provides no server-side validation.
+    </div>
+  </div>
+
+  <!-- Checklist -->
+  <div class="phase">
+    <span class="phase-label">Final checklist</span>
+    <h2>Before going live</h2>
+
+    <table>
+      <thead><tr><th>Check</th><th>How to verify</th></tr></thead>
+      <tbody>
+        <tr><td>All pages load correctly</td><td>Visit each page in a browser and click through the navigation</td></tr>
+        <tr><td>All navigation links work</td><td>Click every link in the nav and footer across all pages</td></tr>
+        <tr><td>style.css loads on all pages</td><td>Check fonts and colours are correct — if pages look unstyled, the CSS path is wrong</td></tr>
+        <tr><td>Contact form sends</td><td>Submit a test message and confirm it arrives at your inbox</td></tr>
+        <tr><td>404 page works</td><td>Visit a non-existent URL, e.g. <code>/this-does-not-exist</code></td></tr>
+        <tr><td>HTTPS active</td><td>Look for the padlock in the browser address bar</td></tr>
+        <tr><td>HTTP redirects to HTTPS</td><td>Visit <code>http://</code> version — should auto-redirect</td></tr>
+        <tr><td>Mobile responsive</td><td>Open in Chrome → F12 → Toggle device toolbar (Ctrl+Shift+M)</td></tr>
+        <tr><td>Google Fonts load</td><td>Confirm Cormorant Garamond (headings) and Inter (body) are rendering</td></tr>
+        <tr><td>Phone links work</td><td>On mobile, tap the phone number — should prompt a call</td></tr>
+        <tr><td>Privacy policy linked</td><td>Check footer "Privacy Policy" link on every page</td></tr>
+        <tr><td>Formspree form ID replaced</td><td>Check contact.html — no <code>YOUR_FORM_ID</code> placeholder remains</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr />
+
+  <!-- Maintenance -->
+  <div class="phase">
+    <span class="phase-label">Ongoing maintenance</span>
+    <h2>Updating the site</h2>
+    <p>To update any page, simply edit the relevant <code>.html</code> file on your computer, then re-upload it to the same location on your Synology via File Station or SFTP. The change goes live immediately — there is no build step or deployment process.</p>
+
+    <div class="tip">
+      <strong>Editing tip.</strong> Open <code>.html</code> files in a proper code editor such as <a href="https://code.visualstudio.com" target="_blank" rel="noopener">VS Code</a> (free). It gives you syntax highlighting, auto-complete and easy search-and-replace — much easier than Notepad.
+    </div>
+
+    <p>The shared <code>style.css</code> file controls colours, fonts and layout across the whole site. Changing a colour variable in <code>style.css</code> will update it everywhere instantly.</p>
+  </div>
+
+</div>
+</body>
+</html>

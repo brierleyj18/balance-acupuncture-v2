@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balance Acupuncture | Acupuncture & Herbal Medicine in Yorkshire</title>
+  <meta name="description" content="Balance Acupuncture offers professional acupuncture and Chinese herbal medicine in Barnsley, Doncaster and Pontefract. Personalised, holistic care for long-term wellbeing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --cream:      #f9f6f1;
+      --warm-white: #fdfbf8;
+      --sage:       #7eaa85;
+      --sage-light: #a8c8ab;
+      --sage-dark:  #4e7a58;
+      --stone:      #c9bfae;
+      --charcoal:   #3a3530;
+      --mid-grey:   #524f4c;
+      --light-grey: #9e9894;
+      --border:     #e4ddd4;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --font-hand:  'Caveat', cursive;
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--charcoal);
+      background: var(--warm-white);
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+      color: var(--charcoal);
+    }
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+    h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); }
+    h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); }
+    h4 { font-size: 1.1rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; }
+    p  { color: var(--mid-grey); font-size: 0.975rem; line-height: 1.9; }
+
+    /* ── Layout Utilities ── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 5rem 0; }
+    .section--alt { background: var(--cream); }
+    .text-center { text-align: center; }
+
+    .eyebrow {
+      font-family: var(--font-hand);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--sage-dark);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--sage);
+      margin: 1.5rem auto;
+    }
+    .divider--left { margin-left: 0; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid currentColor;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .btn--sage { color: var(--sage-dark); border-color: var(--sage-dark); background: transparent; }
+    .btn--sage:hover { background: var(--sage-dark); color: var(--warm-white); }
+    .btn--outline-white { color: var(--warm-white); border-color: rgba(255,255,255,0.6); }
+    .btn--outline-white:hover { background: rgba(255,255,255,0.15); }
+    .btn--filled { background: var(--sage-dark); color: var(--warm-white); border-color: var(--sage-dark); }
+    .btn--filled:hover { background: var(--sage); border-color: var(--sage); }
+
+    /* ── Navigation ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(253,251,248,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    .site-header.scrolled { box-shadow: 0 2px 20px rgba(58,53,48,0.08); }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--charcoal);
+    }
+    .nav-logo span { color: var(--sage); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--sage);
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--charcoal); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--charcoal); }
+    .nav-cta {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      background: var(--sage-dark);
+      color: var(--warm-white) !important;
+      border-radius: 1px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--sage) !important; }
+    .nav-cta::after { display: none !important; }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--charcoal);
+      transition: all 0.3s;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+      padding-top: 72px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(249,246,241,0.98) 0%, rgba(249,246,241,0.90) 55%, rgba(126,170,133,0.10) 100%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      width: 100%;
+    }
+    .hero-content .eyebrow { color: var(--sage-dark); }
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+      line-height: 1.1;
+      margin-bottom: 1.6rem;
+      font-weight: 300;
+    }
+    .hero-content h1 em { font-style: italic; color: var(--sage-dark); }
+    .hero-content p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+      color: var(--mid-grey);
+    }
+    .hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: center; }
+    .hero-illustration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+    .hero-illustration svg { width: 100%; max-width: 460px; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--light-grey);
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: var(--sage-light);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%,100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.3); }
+    }
+
+    /* ── Services intro strip ── */
+    .services-strip { background: var(--charcoal); padding: 3rem 0; }
+    .services-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+    }
+    .services-strip-item {
+      padding: 1.5rem 2rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .services-strip-item:last-child { border-right: none; }
+    .services-strip-item h4 {
+      color: var(--sage-light);
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .services-strip-item p { color: rgba(255,255,255,0.55); font-size: 0.82rem; }
+
+    /* ── Two-col image/text ── */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+    .split-section--reverse { direction: rtl; }
+    .split-section--reverse > * { direction: ltr; }
+    .split-image {
+      position: relative;
+      overflow: hidden;
+      min-height: 480px;
+    }
+    .split-image--placeholder  { background: linear-gradient(160deg, var(--sage-light) 0%, var(--stone) 100%); }
+    .split-image--placeholder-2 { background: linear-gradient(160deg, #d4c9b8 0%, #b8c9b9 100%); }
+    .split-image--placeholder-3 { background: linear-gradient(160deg, #c2b89f 0%, var(--sage-light) 100%); }
+    .botanical-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.2;
+    }
+    .split-text {
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .split-text h2 { margin-bottom: 1.2rem; }
+    .split-text p  { margin-bottom: 1.2rem; }
+    .split-text .btn { margin-top: 1rem; align-self: flex-start; }
+
+    /* ── Conditions grid ── */
+    .conditions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .condition-card {
+      background: var(--warm-white);
+      padding: 2rem 1.8rem;
+      transition: background 0.2s;
+    }
+    .condition-card:hover { background: var(--cream); }
+    .condition-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--charcoal);
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    /* ── Quote ── */
+    .quote-section {
+      padding: 6rem 0;
+      text-align: center;
+      background: var(--cream);
+    }
+    .quote-mark {
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      line-height: 0.5;
+      color: var(--sage-light);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--charcoal);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    /* ── Testimonials ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .testimonial-card {
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      background: var(--warm-white);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--sage-light);
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+    }
+    .testimonial-card p {
+      padding-top: 1.5rem;
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-name {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    /* ── About intro ── */
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-portrait { position: relative; }
+    .about-portrait-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 100px;
+      height: 100px;
+      background: var(--sage-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--warm-white);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .bacc-logo { margin-top: 1.5rem; max-width: 140px; }
+
+    /* ── CTA Banner ── */
+    .cta-banner {
+      background: var(--sage-dark);
+      padding: 5rem 0;
+      text-align: center;
+    }
+    .cta-banner .eyebrow { color: var(--sage-light); }
+    .cta-banner h2 { color: var(--warm-white); margin-bottom: 1rem; font-size: clamp(1.8rem, 3vw, 2.6rem); }
+    .cta-banner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .cta-banner-actions { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+    .cta-tel {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .cta-email {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      display: block;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+    .cta-email:hover { color: var(--sage-light); }
+
+    /* ── Locations ── */
+    .locations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .location-card { padding: 2.5rem; border: 1px solid var(--border); }
+    .location-card h3 { font-size: 1.2rem; margin-bottom: 1rem; font-style: italic; }
+    .location-card p, .location-card a {
+      font-size: 0.85rem;
+      line-height: 2;
+      color: var(--mid-grey);
+    }
+    .location-card a:hover { color: var(--sage-dark); }
+    .location-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--sage);
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+
+    /* ── Footer ── */
+    .site-footer { background: var(--charcoal); padding: 4rem 0 2rem; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--warm-white);
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+    .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+    .footer-col h4 {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage-light);
+      margin-bottom: 1.2rem;
+      font-family: var(--font-sans);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a { color: rgba(255,255,255,0.5); font-size: 0.82rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--sage-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+    .footer-social a:hover { border-color: var(--sage-light); color: var(--sage-light); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-illustration { display: none; }
+      .split-section { grid-template-columns: 1fr; }
+      .split-section--reverse { direction: ltr; }
+      .split-image { min-height: 320px; }
+      .split-text { padding: 3.5rem 2rem; }
+      .about-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .conditions-grid { grid-template-columns: repeat(2,1fr); }
+      .services-strip-grid { grid-template-columns: 1fr; }
+      .services-strip-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .locations-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 72px; left: 0; right: 0;
+        background: var(--warm-white);
+        padding: 2rem;
+        gap: 1.4rem;
+        border-bottom: 1px solid var(--border);
+        z-index: 99;
+      }
+    }
+    @media (max-width: 600px) {
+      .conditions-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<header class="site-header" id="site-header">
+  <nav class="nav-inner">
+    <a href="index.html" class="nav-logo">Balance <span>Acupuncture</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Treatments</a></li>
+      <li><a href="herbal.html">Herbal Medicine</a></li>
+      <li><a href="conditions.html">Conditions</a></li>
+      <li><a href="fees.html">Fees</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <div class="hero-inner">
+
+      <!-- Left: content -->
+      <div class="hero-content">
+        <span class="eyebrow">Barnsley · Doncaster · Pontefract</span>
+        <h1>Restoring balance<br>through <em>natural medicine</em></h1>
+        <p>Gentle, personalised acupuncture and Chinese herbal medicine, helping you return to long-term wellbeing. Rooted in ancient wisdom. Tailored entirely to you.</p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn--filled">Book a Consultation</a>
+          <a href="services.html" class="btn btn--sage">Explore Treatments</a>
+        </div>
+      </div>
+
+      <!-- Right: herb yin-yang illustration -->
+      <div class="hero-illustration" aria-hidden="true">
+        <svg viewBox="0 0 440 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Outer rings -->
+          <circle cx="220" cy="220" r="192" stroke="#4e7a58" stroke-width="1.4" opacity="0.45"/>
+          <circle cx="220" cy="220" r="178" stroke="#4e7a58" stroke-width="0.7" opacity="0.2"/>
+          <!-- Yin-yang S-curve divider -->
+          <path d="M220 28 C220 28 220 124 220 124 C220 172 252 220 220 220 C188 220 156 268 156 316 C156 364 220 412 220 412" stroke="#4e7a58" stroke-width="1.6" fill="none" opacity="0.65"/>
+          <!-- Upper half-circle -->
+          <circle cx="220" cy="124" r="48" stroke="#4e7a58" stroke-width="1" fill="rgba(78,122,88,0.07)" opacity="0.8"/>
+          <!-- Lower half-circle -->
+          <circle cx="220" cy="316" r="48" stroke="#4e7a58" stroke-width="1" fill="rgba(78,122,88,0.07)" opacity="0.8"/>
+          <!-- Small dots in each half -->
+          <circle cx="220" cy="124" r="17" fill="rgba(78,122,88,0.22)" stroke="#4e7a58" stroke-width="1"/>
+          <circle cx="220" cy="316" r="17" fill="rgba(78,122,88,0.08)" stroke="#4e7a58" stroke-width="1.2"/>
+          <!-- Herb branches — left upper -->
+          <path d="M148 194 C122 178 88 186 74 210" stroke="#4e7a58" stroke-width="1.4" fill="none" opacity="0.8"/>
+          <path d="M134 178 C120 152 96 148 90 168" stroke="#4e7a58" stroke-width="1.1" fill="none" opacity="0.7"/>
+          <path d="M148 164 C136 140 120 138 116 155" stroke="#4e7a58" stroke-width="1" fill="none" opacity="0.6"/>
+          <!-- Herb branches — left lower -->
+          <path d="M148 248 C124 244 100 258 94 280" stroke="#4e7a58" stroke-width="1.4" fill="none" opacity="0.8"/>
+          <path d="M140 268 C118 278 106 302 118 316" stroke="#4e7a58" stroke-width="1.1" fill="none" opacity="0.65"/>
+          <!-- Herb branches — right upper -->
+          <path d="M292 194 C318 178 352 186 366 210" stroke="#4e7a58" stroke-width="1.4" fill="none" opacity="0.8"/>
+          <path d="M306 178 C320 152 344 148 350 168" stroke="#4e7a58" stroke-width="1.1" fill="none" opacity="0.7"/>
+          <path d="M306 158 C322 136 344 136 346 154" stroke="#4e7a58" stroke-width="1" fill="none" opacity="0.6"/>
+          <!-- Herb branches — right lower -->
+          <path d="M292 248 C316 244 340 258 346 280" stroke="#4e7a58" stroke-width="1.4" fill="none" opacity="0.8"/>
+          <path d="M300 268 C322 278 334 302 322 316" stroke="#4e7a58" stroke-width="1.1" fill="none" opacity="0.65"/>
+          <!-- Leaf-bud tip circles -->
+          <circle cx="74"  cy="210" r="7" stroke="#4e7a58" stroke-width="1" fill="rgba(78,122,88,0.2)"/>
+          <circle cx="90"  cy="168" r="5" stroke="#4e7a58" stroke-width="1" fill="rgba(78,122,88,0.2)"/>
+          <circle cx="94"  cy="280" r="7" stroke="#4e7a58" stroke-width="1" fill="rgba(78,122,88,0.2)"/>
+          <circle cx="118" cy="316" r="5" stroke="#4e7a58" stroke-width="1" fill="rgba(78,122,88,0.18)"/>
+          <circle cx="366" cy="210" r="7" stroke="#4e7a58" stroke-width="1" fill="rgba(78,122,88,0.2)"/>
+          <circle cx="350" cy="168" r="5" stroke="#4e7a58" stroke-width="1" fill="rgba(78,122,88,0.2)"/>
+          <circle cx="346" cy="280" r="7" stroke="#4e7a58" stroke-width="1" fill="rgba(78,122,88,0.2)"/>
+          <circle cx="322" cy="316" r="5" stroke="#4e7a58" stroke-width="1" fill="rgba(78,122,88,0.18)"/>
+          <!-- Top botanical flourish -->
+          <path d="M200 46 C208 32 220 28 220 28 C220 28 232 32 240 46" stroke="#4e7a58" stroke-width="1.2" fill="none" opacity="0.55"/>
+          <!-- Bottom botanical flourish -->
+          <path d="M200 394 C208 408 220 412 220 412 C220 412 232 408 240 394" stroke="#4e7a58" stroke-width="1.2" fill="none" opacity="0.55"/>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</section>
+
+<!-- ── Services strip ── -->
+<div class="services-strip">
+  <div class="container">
+    <div class="services-strip-grid">
+      <div class="services-strip-item">
+        <h4>Acupuncture</h4>
+        <p>Traditional Chinese Medicine to relieve pain, reduce stress and restore balance</p>
+      </div>
+      <div class="services-strip-item">
+        <h4>Herbal Medicine</h4>
+        <p>Personalised herbal prescriptions supporting your acupuncture treatment</p>
+      </div>
+      <div class="services-strip-item">
+        <h4>Holistic Care</h4>
+        <p>Integrated advice on diet, lifestyle and wellbeing unique to you</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Welcome split ── -->
+<section class="section">
+  <div class="split-section">
+    <div class="split-image">
+      <img src="images/sue-window.jpg" alt="Sue, practitioner at Balance Acupuncture, standing by a sunny window overlooking fields" />
+    </div>
+    <div class="split-text">
+      <span class="eyebrow">Welcome</span>
+      <h2>A place to be heard, treated and restored</h2>
+      <div class="divider divider--left"></div>
+      <p>At Balance Acupuncture, my approach combines acupuncture, Chinese herbal medicine and practical lifestyle support to create care that is focused, personal and tailored to you.</p>
+      <p>I work with each person as an individual, taking time to understand what is happening, what you need, and how best to support your health.</p>
+      <p>Whether you are managing a long-term condition, going through a stressful period, or wanting to feel more balanced and well, my aim is to help you move forward with greater confidence, comfort and vitality.</p>
+      <a href="about.html" class="btn btn--sage">About Sue</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Treatments intro ── -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="text-center" style="max-width:680px; margin:0 auto 4rem;">
+      <span class="eyebrow">Treatments</span>
+      <h2>Acupuncture &amp; Herbal Medicine</h2>
+      <div class="divider"></div>
+      <p>Two complementary pathways to healing — used individually or together for the most complete therapeutic effect. Both are rooted in Traditional Chinese Medicine and adapted to your unique needs.</p>
+    </div>
+
+    <!-- Acupuncture -->
+    <div class="split-section split-section--reverse" style="margin-bottom:2px;">
+      <div class="split-image">
+        <img src="images/sue-smiling.jpg" alt="Sue at Balance Acupuncture clinic, standing by the herb dispensary" />
+      </div>
+      <div class="split-text" style="background:var(--warm-white);">
+        <span class="eyebrow">Acupuncture</span>
+        <h2>Ancient wisdom, modern care</h2>
+        <div class="divider divider--left"></div>
+        <p>Acupuncture works by stimulating specific points on the body. In Traditional Chinese Medicine, these points are understood to be part of the body's energy pathways (or channels); in modern terms, acupuncture influences the nervous system, shaping how the brain processes pain, stress and other signals.</p>
+        <p>By stimulating these points, acupuncture can "interrupt" unhelpful patterns in the body — such as hormone regulation, pain responses or stress pathways — and create a useful nudge towards recovery.</p>
+        <p>In this way, treatment can act as a conduit for change: supporting the body's natural ability to heal, rebalance and settle.</p>
+        <p>Fine, single-use needles are placed with precision and care. Most people find the experience deeply relaxing — often drifting into a restorative rest. From pain and hormonal health to anxiety and digestive concerns, acupuncture offers a grounded approach to lasting wellbeing.</p>
+        <a href="services.html" class="btn btn--sage">Acupuncture Treatments</a>
+      </div>
+    </div>
+
+    <!-- Herbal Medicine -->
+    <div class="split-section" style="margin-top:2px;">
+      <div class="split-image">
+        <img src="images/herb-yinyang.jpg" alt="Chinese herbs — roots, goji berries, bark and seeds — arranged in a beautiful yin-yang pattern" />
+      </div>
+      <div class="split-text" style="background:var(--cream);">
+        <span class="eyebrow">Chinese Herbal Medicine</span>
+        <h2>Personalised prescriptions from nature</h2>
+        <div class="divider divider--left"></div>
+        <p>Chinese herbal medicine can be used as a standalone treatment, or alongside acupuncture to help build on the work you and I do in clinic.</p>
+        <p>Each formula is chosen for you as an individual, looking at your symptoms, your overall health, and how things change over time. Unlike conventional medicines, which often focus on managing a specific symptom or diagnosis, Chinese herbal medicine takes a broader view — aiming to support the whole person and address root causes alongside the symptoms.</p>
+        <p>When professionally prescribed, Chinese herbal medicine offers a gentler, more personalised approach than conventional treatments, with formulas regularly adjusted to suit your needs and minimise unwanted effects wherever possible.</p>
+        <p>Chinese herbal medicine can be used alongside acupuncture to support your treatment between appointments and help build on the work we do in clinic.</p>
+        <a href="herbal.html" class="btn btn--sage">About Herbal Medicine</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Quote ── -->
+<section class="quote-section">
+  <div class="container">
+    <span class="quote-mark">&ldquo;</span>
+    <blockquote>
+      Your body has an incredible capacity for change. My role is to help support that change, one step at a time.
+    </blockquote>
+    <div class="divider" style="margin-top:2rem;"></div>
+  </div>
+</section>
+
+<!-- ── How I Can Support You ── -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:640px; margin:0 auto 3rem;">
+      <span class="eyebrow">How I can help</span>
+      <h2>How I Can Support You</h2>
+      <div class="divider"></div>
+      <p><strong style="color:var(--charcoal); font-weight:400;">Common Reasons People Come for Treatment</strong><br>Whether you are dealing with pain, stress, hormonal changes or ongoing health issues, treatment is tailored to you.</p>
+    </div>
+    <div class="conditions-grid">
+      <div class="condition-card"><h4>Pain &amp; Musculoskeletal</h4></div>
+      <div class="condition-card"><h4>Stress &amp; Mental Wellbeing</h4></div>
+      <div class="condition-card"><h4>Women's Health</h4></div>
+      <div class="condition-card"><h4>Digestive Health</h4></div>
+      <div class="condition-card"><h4>Respiratory Health</h4></div>
+      <div class="condition-card"><h4>Reproductive Health</h4></div>
+    </div>
+    <div class="text-center" style="margin-top:2.5rem;">
+      <a href="conditions.html" class="btn btn--sage">View All Conditions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Testimonials ── -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="text-center" style="max-width:560px; margin:0 auto 3rem;">
+      <span class="eyebrow">Patient stories</span>
+      <h2>What my patients say</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <p>I came to see Sue with chronic back pain and a significant problem with acid reflux. Both have improved enormously. She is thorough, professional and a very good listener. I would recommend her very highly.</p>
+        <span class="testimonial-name">— Patient, Barnsley</span>
+      </div>
+      <div class="testimonial-card">
+        <p>I was sceptical about acupuncture and Chinese herbal medicine but decided to try it for a long-standing menstrual problem. After just a few months of treatment I had seen such an improvement in my symptoms. I have no hesitation in recommending Sue.</p>
+        <span class="testimonial-name">— Patient, Doncaster</span>
+      </div>
+      <div class="testimonial-card">
+        <p>I came to Sue feeling exhausted and anxious. I have really benefited from the treatment — I feel so much better, more energised and less anxious. I am sleeping better too. Highly recommended.</p>
+        <span class="testimonial-name">— Patient, Pontefract</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── About Sue ── -->
+<section class="section">
+  <div class="container">
+    <div class="about-intro">
+      <div class="about-portrait">
+        <div style="min-height:400px; overflow:hidden;">
+          <img src="images/sue-portrait.jpg" alt="Sue, acupuncturist at Balance Acupuncture" style="width:100%;height:100%;min-height:400px;object-fit:cover;object-position:center top;display:block;" />
+        </div>
+        <div class="about-portrait-badge">
+          <span>BAcC</span>
+          <span>Member</span>
+        </div>
+        <img src="https://static.wixstatic.com/media/501736_37763754c4054ecd9ece30b182f89282~mv2.png/v1/fill/w_309,h_105,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/BAcC_Member_Pos_RGB.png" alt="British Acupuncture Council Member" class="bacc-logo" />
+      </div>
+      <div>
+        <span class="eyebrow">About me</span>
+        <h2>Nice to meet you</h2>
+        <div class="divider divider--left"></div>
+        <p>I trained at the Northern College of Acupuncture, graduating with a first-class BSc (Hons), and I'm a fully registered member of the British Acupuncture Council.</p>
+        <p>Chinese medicine has been part of my own life as well as my professional training. That experience shapes how I practise: with empathy, care and a focus on what each person actually needs.</p>
+        <p>I use acupuncture, Chinese herbal medicine, bodywork, guasha, cupping and lifestyle advice to support the whole person — not just the symptoms.</p>
+        <p>My role is simple: to listen, understand and guide you towards better health in a way that feels personal, practical and right for you.</p>
+        <div style="margin-top:2rem;">
+          <a href="about.html" class="btn btn--sage">Read More About Me</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-banner">
+  <div class="container">
+    <span class="eyebrow" style="color:var(--sage-light);">Take the first step</span>
+    <h2>Ready to begin your journey?</h2>
+    <p>Call or email to discuss how acupuncture and herbal medicine could support you and your health goals.</p>
+    <a href="tel:+447747065296" class="cta-tel">07747 065296</a>
+    <a href="mailto:sue@balanceacupuncture.uk" class="cta-email">sue@balanceacupuncture.uk</a>
+    <div class="cta-banner-actions">
+      <a href="contact.html" class="btn btn--filled" style="background:var(--warm-white); color:var(--sage-dark); border-color:var(--warm-white);">Book a Consultation</a>
+      <a href="contact.html" class="btn btn--outline-white">View Locations</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Locations ── -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:560px; margin:0 auto 3rem;">
+      <span class="eyebrow">Clinics</span>
+      <h2>Find Me</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="locations-grid">
+      <div class="location-card">
+        <span class="location-dot"></span>
+        <h3>Barnsley</h3>
+        <p>Western House Consulting Rooms<br>4 Western Street<br>Barnsley, S70 2BP</p>
+        <a href="tel:+441226730249" style="display:block; margin-top:1rem; color:var(--sage-dark);">01226 730249</a>
+      </div>
+      <div class="location-card">
+        <span class="location-dot"></span>
+        <h3>Doncaster</h3>
+        <p>The Denwood Clinic<br>22B Cooke Street, Bentley<br>Doncaster, DN5 0DA</p>
+        <a href="tel:+447747065296" style="display:block; margin-top:1rem; color:var(--sage-dark);">07747 065296</a>
+      </div>
+      <div class="location-card">
+        <span class="location-dot"></span>
+        <h3>Pontefract</h3>
+        <p>Balance Acupuncture<br>13 Springfield Crescent<br>Kirk Smeaton, WF8 3LE</p>
+        <a href="tel:+447747065296" style="display:block; margin-top:1rem; color:var(--sage-dark);">07747 065296</a>
+      </div>
+    </div>
+    <div class="text-center" style="margin-top:2.5rem;">
+      <a href="contact.html" class="btn btn--sage">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Balance Acupuncture</h3>
+        <p>Professional acupuncture and Chinese herbal medicine in Barnsley, Doncaster and Pontefract, specialising in fertility support &amp; care. Supporting your body's natural balance since 2015.</p>
+        <div class="footer-social" style="margin-top:1.5rem;">
+          <a href="https://www.facebook.com/BalanceAcupuntcureYorkshire" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a href="https://www.instagram.com/sue.balanceacupuncture/" target="_blank" rel="noopener" aria-label="Instagram">in</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Treatments</h4>
+        <ul>
+          <li><a href="services.html">Acupuncture</a></li>
+          <li><a href="herbal.html">Chinese Herbal Medicine</a></li>
+          <li><a href="services.html#cupping">Cupping &amp; Guasha</a></li>
+          <li><a href="services.html#moxibustion">Moxibustion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul>
+          <li><a href="about.html">About Sue</a></li>
+          <li><a href="conditions.html">Conditions Treated</a></li>
+          <li><a href="fees.html">Fees</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Book an Appointment</a></li>
+          <li><a href="tel:+447747065296">07747 065296</a></li>
+          <li><a href="mailto:sue@balanceacupuncture.uk">sue@balanceacupuncture.uk</a></li>
+          <li><a href="contact.html">Find My Clinics</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Balance Acupuncture. All rights reserved.</span>
+      <span>Member of the British Acupuncture Council (BAcC)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20));
+
+  const toggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+</script>
+</body>
+</html>

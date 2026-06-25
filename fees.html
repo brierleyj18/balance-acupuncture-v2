@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fees | Balance Acupuncture</title>
+  <meta name="description" content="Transparent pricing for acupuncture and Chinese herbal medicine at Balance Acupuncture — Barnsley, Doncaster and Pontefract." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Fees-page layout ── */
+
+    /* Pricing card grid */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .pricing-card {
+      border: 1px solid var(--border);
+      background: var(--warm-white);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .pricing-card:hover {
+      box-shadow: 0 8px 32px rgba(58,53,48,0.08);
+      transform: translateY(-2px);
+    }
+    .pricing-card--featured {
+      border-color: var(--sage);
+      position: relative;
+    }
+    .pricing-card--featured::before {
+      content: 'Best Value';
+      position: absolute;
+      top: -1px; left: 50%;
+      transform: translateX(-50%);
+      background: var(--sage-dark);
+      color: var(--warm-white);
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.3rem 1rem;
+      white-space: nowrap;
+    }
+
+    .card-header {
+      padding: 2rem 2rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-header .eyebrow { margin-bottom: 0.5rem; }
+    .card-header h3 {
+      font-size: 1.3rem;
+      font-style: italic;
+      margin-bottom: 0.3rem;
+    }
+    .card-header p { font-size: 0.82rem; }
+
+    .card-price {
+      padding: 1.8rem 2rem;
+      border-bottom: 1px solid var(--border);
+      background: var(--cream);
+    }
+    .price-amount {
+      font-family: var(--font-serif);
+      font-size: 2.8rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      line-height: 1;
+    }
+    .price-amount sup {
+      font-size: 1.4rem;
+      vertical-align: super;
+    }
+    .price-note {
+      font-size: 0.78rem;
+      color: var(--light-grey);
+      margin-top: 0.3rem;
+      display: block;
+    }
+
+    .card-includes {
+      padding: 1.8rem 2rem;
+      flex: 1;
+    }
+    .card-includes ul {
+      list-style: none;
+    }
+    .card-includes ul li {
+      font-size: 0.86rem;
+      color: var(--mid-grey);
+      padding: 0.45rem 0;
+      padding-left: 1.4rem;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-includes ul li:last-child { border-bottom: none; }
+    .card-includes ul li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--sage);
+    }
+
+    .card-footer {
+      padding: 1.5rem 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .card-footer .btn { width: 100%; text-align: center; display: block; }
+
+    /* Herbal pricing table */
+    .fees-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2rem;
+    }
+    .fees-table th {
+      background: var(--charcoal);
+      color: var(--warm-white);
+      padding: 0.9rem 1.4rem;
+      text-align: left;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 400;
+      font-family: var(--font-sans);
+    }
+    .fees-table td {
+      padding: 1rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--mid-grey);
+      vertical-align: top;
+    }
+    .fees-table tr:last-child td { border-bottom: none; }
+    .fees-table tr:nth-child(even) td { background: var(--cream); }
+    .fees-table td:last-child {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: var(--charcoal);
+      white-space: nowrap;
+    }
+
+    /* Insurance / info row */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .info-card {
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      background: var(--warm-white);
+    }
+    .info-card h3 {
+      font-size: 1.3rem;
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .info-card p { font-size: 0.9rem; margin-bottom: 0.9rem; }
+    .info-card p:last-child { margin-bottom: 0; }
+    .info-card a { color: var(--sage-dark); font-weight: 500; }
+    .info-card a:hover { color: var(--sage); }
+
+    /* FAQ strip */
+    .faq-list { margin-top: 2rem; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+      padding: 1.6rem 0;
+    }
+    .faq-item:first-child { border-top: 1px solid var(--border); }
+    .faq-q {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--charcoal);
+      margin-bottom: 0.6rem;
+    }
+    .faq-a { font-size: 0.9rem; max-width: 780px; }
+
+    /* Note box */
+    .notice {
+      background: linear-gradient(135deg, #e8ede8 0%, var(--cream) 100%);
+      border-left: 3px solid var(--sage);
+      padding: 1.8rem 2.2rem;
+      margin-top: 2.5rem;
+    }
+    .notice p { font-size: 0.9rem; }
+    .notice strong { color: var(--charcoal); font-weight: 500; }
+
+    @media (max-width: 900px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .info-grid    { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<header class="site-header" id="site-header">
+  <nav class="nav-inner">
+    <a href="index.html" class="nav-logo">Balance <span>Acupuncture</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Treatments</a></li>
+      <li><a href="herbal.html">Herbal Medicine</a></li>
+      <li><a href="conditions.html">Conditions</a></li>
+      <li><a href="fees.html" class="active">Fees</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Page Hero -->
+<section class="page-hero">
+  <div class="container">
+    <span class="eyebrow">Transparent pricing</span>
+    <h1>Fees</h1>
+    <div class="divider divider--left"></div>
+    <p>Clear, straightforward pricing for all treatments. If you have any questions about fees or what is included, please don't hesitate to call — we are always happy to talk things through.</p>
+  </div>
+</section>
+
+<!-- Acupuncture pricing -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:640px; margin:0 auto 3rem;">
+      <span class="eyebrow">Acupuncture</span>
+      <h2>Treatment fees</h2>
+      <div class="divider"></div>
+      <p>All sessions include a thorough assessment, personalised point prescription, and lifestyle guidance where appropriate. Initial appointments are longer to allow time for a full case history.</p>
+    </div>
+
+    <div class="pricing-grid">
+
+      <!-- Initial consultation -->
+      <div class="pricing-card">
+        <div class="card-header">
+          <span class="eyebrow">First visit</span>
+          <h3>Initial Consultation & Treatment</h3>
+          <p>A comprehensive first appointment covering your full health history, diagnosis and first treatment.</p>
+        </div>
+        <div class="card-price">
+          <div class="price-amount"><sup>£</sup>65</div>
+          <span class="price-note">Approximately 60–70 minutes</span>
+        </div>
+        <div class="card-includes">
+          <ul>
+            <li>Full case history & health assessment</li>
+            <li>Tongue & pulse diagnosis</li>
+            <li>First acupuncture treatment</li>
+            <li>Personalised treatment plan</li>
+            <li>Lifestyle & dietary guidance</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a href="contact.html" class="btn btn--sage">Book This</a>
+        </div>
+      </div>
+
+      <!-- Follow-up -->
+      <div class="pricing-card">
+        <div class="card-header">
+          <span class="eyebrow">Ongoing care</span>
+          <h3>Follow-up Treatment</h3>
+          <p>Regular treatment sessions maintaining and building on your therapeutic progress.</p>
+        </div>
+        <div class="card-price">
+          <div class="price-amount"><sup>£</sup>50</div>
+          <span class="price-note">Approximately 45–50 minutes</span>
+        </div>
+        <div class="card-includes">
+          <ul>
+            <li>Progress review & updated assessment</li>
+            <li>Full acupuncture treatment</li>
+            <li>Revised point prescription as needed</li>
+            <li>Ongoing lifestyle advice</li>
+            <li>Herbal prescription review if applicable</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a href="contact.html" class="btn btn--sage">Book This</a>
+        </div>
+      </div>
+
+      <!-- Course of 6 -->
+      <div class="pricing-card pricing-card--featured">
+        <div class="card-header">
+          <span class="eyebrow">Best value</span>
+          <h3>Course of 6 Treatments</h3>
+          <p>A committed course of treatment is the most effective way to achieve lasting, sustainable results.</p>
+        </div>
+        <div class="card-price">
+          <div class="price-amount"><sup>£</sup>270</div>
+          <span class="price-note">Six follow-up sessions — saving £30</span>
+        </div>
+        <div class="card-includes">
+          <ul>
+            <li>Six full acupuncture treatments</li>
+            <li>Cumulative, compounding therapeutic benefit</li>
+            <li>Ideal for chronic or complex conditions</li>
+            <li>Sessions used flexibly over your treatment course</li>
+            <li>Full reassessment at each visit</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <a href="contact.html" class="btn btn--filled">Enquire</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="notice">
+      <p><strong>Please note:</strong> All fees are payable on the day of treatment. We accept cash and bank transfer. A receipt is issued after every session, including our BAcC registration number for private health insurance claims.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Herbal medicine fees -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="text-center" style="max-width:640px; margin:0 auto 3rem;">
+      <span class="eyebrow">Chinese Herbal Medicine</span>
+      <h2>Herbal prescription fees</h2>
+      <div class="divider"></div>
+      <p>Herbal medicine is offered alongside acupuncture or as a standalone service. Prescription costs vary depending on the complexity of your formula and the duration of the prescription.</p>
+    </div>
+
+    <table class="fees-table">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Description</th>
+          <th>Fee</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong style="color:var(--charcoal); font-weight:500;">Herbal consultation (standalone)</strong></td>
+          <td>Full case history, Chinese medicine diagnosis, and initial herbal prescription for patients not receiving acupuncture</td>
+          <td>£55</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--charcoal); font-weight:500;">Herbal prescription (alongside acupuncture)</strong></td>
+          <td>Personalised herbal formula prepared at or following your acupuncture appointment — no separate consultation fee</td>
+          <td>From £18 / week</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--charcoal); font-weight:500;">Herbal prescription review (standalone)</strong></td>
+          <td>Review and adjustment of your formula without an acupuncture session, for established patients</td>
+          <td>£25</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--charcoal); font-weight:500;">Granule / powder formulas</strong></td>
+          <td>Concentrated herbal granules (dissolved in water) — convenient, flexible dosing. Price varies by formula complexity</td>
+          <td>From £18 / week</td>
+        </tr>
+        <tr>
+          <td><strong style="color:var(--charcoal); font-weight:500;">Patent pill formulas</strong></td>
+          <td>Pre-prepared classical Chinese formulas for simpler, acute presentations</td>
+          <td>From £12</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="notice">
+      <p><strong>Herbal prescription costs</strong> are in addition to the acupuncture consultation fee and are priced separately, as the cost of your formula depends on the specific herbs required. Sue will always give you a clear indication of costs before prescribing.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Insurance & other info -->
+<section class="section">
+  <div class="container">
+    <div class="text-center" style="max-width:580px; margin:0 auto 3rem;">
+      <span class="eyebrow">Good to know</span>
+      <h2>Insurance & other information</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h3>Private health insurance</h3>
+        <p>Balance Acupuncture accepts private health insurance claims from a number of major providers. Some insurers allow self-referral; others require a referral letter from your GP or a specialist consultant.</p>
+        <p>A receipt and our BAcC registration number are issued after every treatment for insurance purposes. Please confirm your cover with your insurer before booking.</p>
+        <p>For insurance enquiries, please call <a href="tel:+447747065296">07747 065296</a> or email <a href="mailto:info@balanceacupuncture.uk">info@balanceacupuncture.uk</a>.</p>
+      </div>
+      <div class="info-card">
+        <h3>Cancellation policy</h3>
+        <p>We kindly ask that you give at least <strong style="color:var(--charcoal); font-weight:500;">24 hours' notice</strong> if you need to cancel or reschedule your appointment. This allows us to offer the time to another patient.</p>
+        <p>Appointments cancelled with less than 24 hours' notice may be subject to a cancellation fee of 50% of the treatment cost.</p>
+        <p>We understand that circumstances sometimes change unexpectedly — please contact us as soon as possible and we will always try to be flexible where we can.</p>
+      </div>
+      <div class="info-card">
+        <h3>Concessions</h3>
+        <p>We are committed to making holistic healthcare as accessible as possible. Reduced fees may be available in certain circumstances — please contact us for a confidential conversation.</p>
+        <p>We also offer a free 15-minute telephone consultation for anyone uncertain whether acupuncture or herbal medicine is right for them — no commitment required.</p>
+        <a href="contact.html" class="btn btn--sage" style="display:inline-block; margin-top:1.2rem;">Get in Touch</a>
+      </div>
+      <div class="info-card">
+        <h3>Payment methods</h3>
+        <p>We accept the following forms of payment:</p>
+        <ul style="list-style:none; margin-top:0.8rem;">
+          <li style="padding:0.4rem 0; border-bottom:1px solid var(--border); font-size:0.88rem; color:var(--mid-grey); padding-left:1.2rem; position:relative;">
+            <span style="position:absolute;left:0;color:var(--sage);">–</span> Cash (on the day)
+          </li>
+          <li style="padding:0.4rem 0; border-bottom:1px solid var(--border); font-size:0.88rem; color:var(--mid-grey); padding-left:1.2rem; position:relative;">
+            <span style="position:absolute;left:0;color:var(--sage);">–</span> Bank transfer (BACS)
+          </li>
+          <li style="padding:0.4rem 0; font-size:0.88rem; color:var(--mid-grey); padding-left:1.2rem; position:relative;">
+            <span style="position:absolute;left:0;color:var(--sage);">–</span> Private health insurance (see above)
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--alt">
+  <div class="container" style="max-width:860px;">
+    <div class="text-center" style="margin-bottom:1rem;">
+      <span class="eyebrow">Common questions</span>
+      <h2>Fees FAQ</h2>
+      <div class="divider"></div>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">How many treatments will I need?</div>
+        <div class="faq-a">This varies considerably depending on your condition, how long you have had it, and your individual response to treatment. After your first appointment, Sue will give you an estimated treatment plan. For acute conditions, a short course of 4–6 sessions may be sufficient. For long-standing chronic conditions, a longer commitment of weekly sessions is usually needed to achieve lasting change.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Are herbal medicine costs included in the acupuncture fee?</div>
+        <div class="faq-a">No — herbal prescriptions are costed separately, as the ingredients required vary considerably between patients. Your herbal formula cost will be explained clearly before any prescription is made. The weekly cost of a herbal prescription typically starts from around £18.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I claim my treatment costs back through my employer?</div>
+        <div class="faq-a">Many employers offer health cash plan benefits that include complementary therapies such as acupuncture. Check your employee benefits documentation or speak to your HR team. A receipt and VAT invoice can be issued for all treatments on request.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Do you offer a free initial consultation?</div>
+        <div class="faq-a">We offer a free 15-minute telephone call for anyone who would like to discuss their health concerns before committing to a full appointment. This is a relaxed, no-obligation conversation. Call <a href="tel:+447747065296" style="color:var(--sage-dark);">07747 065296</a> or use the contact form to request a call back.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <span class="eyebrow">Ready to begin?</span>
+    <h2>Book your first appointment</h2>
+    <p>Call for a free informal chat, or use our contact form to request an appointment at any of our three locations.</p>
+    <a href="tel:+447747065296" class="cta-tel">07747 065296</a>
+    <div class="cta-banner-actions">
+      <a href="contact.html" class="btn btn--filled" style="background:var(--warm-white); color:var(--sage-dark); border-color:var(--warm-white);">Book a Consultation</a>
+      <a href="services.html" class="btn btn--ghost">View Treatments</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Balance Acupuncture</h3>
+        <p>Professional acupuncture and Chinese herbal medicine in Barnsley, Doncaster and Pontefract. Supporting your body's natural balance.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/BalanceAcupuntcureYorkshire" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a href="https://www.instagram.com/sue.balanceacupuncture/" target="_blank" rel="noopener" aria-label="Instagram">ig</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Treatments</h4>
+        <ul>
+          <li><a href="services.html">Acupuncture</a></li>
+          <li><a href="herbal.html">Chinese Herbal Medicine</a></li>
+          <li><a href="services.html#cupping">Cupping &amp; Guasha</a></li>
+          <li><a href="services.html#moxibustion">Moxibustion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul>
+          <li><a href="about.html">About Sue</a></li>
+          <li><a href="about.html#philosophy">Philosophy</a></li>
+          <li><a href="conditions.html">Conditions Treated</a></li>
+          <li><a href="fees.html">Fees</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Book an Appointment</a></li>
+          <li><a href="tel:+447747065296">07747 065296</a></li>
+          <li><a href="mailto:info@balanceacupuncture.uk">info@balanceacupuncture.uk</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Balance Acupuncture. All rights reserved.</span>
+      <span>Member of the British Acupuncture Council (BAcC)</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 20));
+  document.getElementById('nav-toggle').addEventListener('click', () => {
+    document.getElementById('nav-links').classList.toggle('open');
+  });
+</script>
+</body>
+</html>
