@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Balance Acupuncture | Acupuncture & Herbal Medicine in Yorkshire</title>
+  <meta name="description" content="Balance Acupuncture offers professional acupuncture and Chinese herbal medicine in Barnsley, Doncaster and Pontefract. Personalised, holistic care for long-term wellbeing." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --cream:      #f9f6f1;
+      --warm-white: #fdfbf8;
+      --sage:       #7eaa85;
+      --sage-light: #a8c8ab;
+      --sage-dark:  #4e7a58;
+      --stone:      #c9bfae;
+      --charcoal:   #3a3530;
+      --mid-grey:   #524f4c;
+      --light-grey: #9e9894;
+      --border:     #e4ddd4;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Inter', system-ui, sans-serif;
+      --font-hand:  'Caveat', cursive;
+    }
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      font-weight: 300;
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--charcoal);
+      background: var(--warm-white);
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      letter-spacing: 0.01em;
+      line-height: 1.2;
+      color: var(--charcoal);
+    }
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+    h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); }
+    h3 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); }
+    h4 { font-size: 1.1rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; }
+    p  { color: var(--mid-grey); font-size: 0.975rem; line-height: 1.9; }
+
+    /* ── Layout Utilities ── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 2rem; }
+    .section { padding: 5rem 0; }
+    .section--alt { background: var(--cream); }
+    .text-center { text-align: center; }
+
+    .eyebrow {
+      font-family: var(--font-hand);
+      font-size: 1.35rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--sage-dark);
+      display: block;
+      margin-bottom: 0.8rem;
+    }
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--sage);
+      margin: 1.5rem auto;
+    }
+    .divider--left { margin-left: 0; }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      border: 1px solid currentColor;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .btn--sage { color: var(--sage-dark); border-color: var(--sage-dark); background: transparent; }
+    .btn--sage:hover { background: var(--sage-dark); color: var(--warm-white); }
+    .btn--outline-white { color: var(--warm-white); border-color: rgba(255,255,255,0.6); }
+    .btn--outline-white:hover { background: rgba(255,255,255,0.15); }
+    .btn--filled { background: var(--sage-dark); color: var(--warm-white); border-color: var(--sage-dark); }
+    .btn--filled:hover { background: var(--sage); border-color: var(--sage); }
+
+    /* ── Navigation ── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(253,251,248,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      transition: box-shadow 0.3s;
+    }
+    .site-header.scrolled { box-shadow: 0 2px 20px rgba(58,53,48,0.08); }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 400;
+      letter-spacing: 0.04em;
+      color: var(--charcoal);
+    }
+    .nav-logo span { color: var(--sage); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--mid-grey);
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--sage);
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--charcoal); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--charcoal); }
+    .nav-cta {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.4rem;
+      background: var(--sage-dark);
+      color: var(--warm-white) !important;
+      border-radius: 1px;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--sage) !important; }
+    .nav-cta::after { display: none !important; }
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--charcoal);
+      transition: all 0.3s;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+      padding-top: 72px;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(249,246,241,0.98) 0%, rgba(249,246,241,0.90) 55%, rgba(126,170,133,0.10) 100%);
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 4rem;
+      width: 100%;
+    }
+    .hero-content .eyebrow { color: var(--sage-dark); }
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 5.5vw, 4.6rem);
+      line-height: 1.1;
+      margin-bottom: 1.6rem;
+      font-weight: 300;
+    }
+    .hero-content h1 em { font-style: italic; color: var(--sage-dark); }
+    .hero-content p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+      max-width: 520px;
+      color: var(--mid-grey);
+    }
+    .hero-actions { display: flex; gap: 1.2rem; flex-wrap: wrap; align-items: center; }
+    .hero-illustration {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+    .hero-illustration svg { width: 100%; max-width: 460px; }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--light-grey);
+    }
+    .hero-scroll::after {
+      content: '';
+      width: 1px;
+      height: 40px;
+      background: var(--sage-light);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%,100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.3); }
+    }
+
+    /* ── Services intro strip ── */
+    .services-strip { background: var(--charcoal); padding: 3rem 0; }
+    .services-strip-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+    }
+    .services-strip-item {
+      padding: 1.5rem 2rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .services-strip-item:last-child { border-right: none; }
+    .services-strip-item h4 {
+      color: var(--sage-light);
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 400;
+      font-style: italic;
+      margin-bottom: 0.5rem;
+    }
+    .services-strip-item p { color: rgba(255,255,255,0.55); font-size: 0.82rem; }
+
+    /* ── Two-col image/text ── */
+    .split-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: stretch;
+    }
+    .split-section--reverse { direction: rtl; }
+    .split-section--reverse > * { direction: ltr; }
+    .split-image {
+      position: relative;
+      overflow: hidden;
+      min-height: 480px;
+    }
+    .split-image--placeholder  { background: linear-gradient(160deg, var(--sage-light) 0%, var(--stone) 100%); }
+    .split-image--placeholder-2 { background: linear-gradient(160deg, #d4c9b8 0%, #b8c9b9 100%); }
+    .split-image--placeholder-3 { background: linear-gradient(160deg, #c2b89f 0%, var(--sage-light) 100%); }
+    .botanical-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.2;
+    }
+    .split-text {
+      padding: 5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .split-text h2 { margin-bottom: 1.2rem; }
+    .split-text p  { margin-bottom: 1.2rem; }
+    .split-text .btn { margin-top: 1rem; align-self: flex-start; }
+
+    /* ── Conditions grid ── */
+    .conditions-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .condition-card {
+      background: var(--warm-white);
+      padding: 2rem 1.8rem;
+      transition: background 0.2s;
+    }
+    .condition-card:hover { background: var(--cream); }
+    .condition-card h4 {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      color: var(--charcoal);
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    /* ── Quote ── */
+    .quote-section {
+      padding: 6rem 0;
+      text-align: center;
+      background: var(--cream);
+    }
+    .quote-mark {
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      line-height: 0.5;
+      color: var(--sage-light);
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+    blockquote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--charcoal);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.55;
+    }
+
+    /* ── Testimonials ── */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .testimonial-card {
+      padding: 2.5rem;
+      border: 1px solid var(--border);
+      background: var(--warm-white);
+      position: relative;
+    }
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: var(--font-serif);
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--sage-light);
+      position: absolute;
+      top: 1.5rem;
+      left: 2rem;
+    }
+    .testimonial-card p {
+      padding-top: 1.5rem;
+      font-style: italic;
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-name {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    /* ── About intro ── */
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-portrait { position: relative; }
+    .about-portrait-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      width: 100px;
+      height: 100px;
+      background: var(--sage-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--warm-white);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .bacc-logo { margin-top: 1.5rem; max-width: 140px; }
+
+    /* ── CTA Banner ── */
+    .cta-banner {
+      background: var(--sage-dark);
+      padding: 5rem 0;
+      text-align: center;
+    }
+    .cta-banner .eyebrow { color: var(--sage-light); }
+    .cta-banner h2 { color: var(--warm-white); margin-bottom: 1rem; font-size: clamp(1.8rem, 3vw, 2.6rem); }
+    .cta-banner p { color: rgba(255,255,255,0.75); margin-bottom: 2rem; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .cta-banner-actions { display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap; }
+    .cta-tel {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .cta-email {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      display: block;
+      margin-bottom: 2rem;
+      transition: color 0.2s;
+    }
+    .cta-email:hover { color: var(--sage-light); }
+
+    /* ── Locations ── */
+    .locations-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .location-card { padding: 2.5rem; border: 1px solid var(--border); }
+    .location-card h3 { font-size: 1.2rem; margin-bottom: 1rem; font-style: italic; }
+    .location-card p, .location-card a {
+      font-size: 0.85rem;
+      line-height: 2;
+      color: var(--mid-grey);
+    }
+    .location-card a:hover { color: var(--sage-dark); }
+    .location-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--sage);
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+
+    /* ── Footer ── */
+    .site-footer { background: var(--charcoal); padding: 4rem 0 2rem; }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+    }
+    .footer-brand h3 {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      color: var(--warm-white);
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+    .footer-brand p { color: rgba(255,255,255,0.45); font-size: 0.82rem; }
+    .footer-col h4 {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--sage-light);
+      margin-bottom: 1.2rem;
+      font-family: var(--font-sans);
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; }
+    .footer-col ul li a { color: rgba(255,255,255,0.5); font-size: 0.82rem; transition: color 0.2s; }
+    .footer-col ul li a:hover { color: var(--sage-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-social { display: flex; gap: 1rem; }
+    .footer-social a {
+      width: 34px; height: 34px;
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+    .footer-social a:hover { border-color: var(--sage-light); color: var(--sage-light); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-illustration { display: none; }
+      .split-section { grid-template-columns: 1fr; }
+      .split-section--reverse { direction: ltr; }
+      .split-image { min-height: 320px; }
+      .split-text { padding: 3.5rem 2rem; }
+      .about-intro { grid-template-columns: 1fr; gap: 2rem; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .conditions-grid { grid-template-columns: repeat(2,1fr); }
+      .services-strip-grid { grid-template-columns: 1fr; }
+      .services-strip-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+      .locations-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 72px; left: 0; right: 0;
+        background: var(--warm-white);
+        padding: 2rem;
+        gap: 1.4rem;
+        border-bottom: 1px solid var(--border);
+        z-index: 99;
+      }
+    }
+    @media (max-width: 600px) {
+      .conditions-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+      h1 { font-size: 2.4rem; }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header" id="site-header">
+  <nav class="nav-inner">
+    <a href="index.html" class="nav-logo">Balance <span>Acupuncture</span></a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Treatments</a></li>
+      <li><a href="herbal.html">Herbal Medicine</a></li>
+      <li><a href="conditions.html">Conditions</a></li>
+      <li><a href="fees.html">Fees</a></li>
+      <li><a href="contact.html" class="nav-cta">Book Now</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+<main style="max-width:760px;margin:0 auto;padding:7rem 1.5rem 4rem;">
+  <article>
+    <h1 style="color:var(--sage-dark);font-family:var(--font-hand);">ahvxhj</h1>
+    <p style="opacity:0.7;margin-bottom:2rem;">By susan brierley · 26 June 2026</p>
+    
+    <p>ajhxbejxjhvew</p>
+  </article>
+  <p style="margin-top:3rem;"><a href="/blog.html">← Back to blog</a></p>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Balance Acupuncture</h3>
+        <p>Professional acupuncture and Chinese herbal medicine in Barnsley, Doncaster and Pontefract, specialising in fertility support &amp; care. Supporting your body's natural balance since 2015.</p>
+        <div class="footer-social" style="margin-top:1.5rem;">
+          <a href="https://www.facebook.com/BalanceAcupuntcureYorkshire" target="_blank" rel="noopener" aria-label="Facebook">f</a>
+          <a href="https://www.instagram.com/sue.balanceacupuncture/" target="_blank" rel="noopener" aria-label="Instagram">in</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Treatments</h4>
+        <ul>
+          <li><a href="services.html">Acupuncture</a></li>
+          <li><a href="herbal.html">Chinese Herbal Medicine</a></li>
+          <li><a href="services.html#cupping">Cupping &amp; Guasha</a></li>
+          <li><a href="services.html#moxibustion">Moxibustion</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Information</h4>
+        <ul>
+          <li><a href="about.html">About Sue</a></li>
+          <li><a href="conditions.html">Conditions Treated</a></li>
+          <li><a href="fees.html">Fees</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="contact.html">Book an Appointment</a></li>
+          <li><a href="tel:+447747065296">07747 065296</a></li>
+          <li><a href="mailto:sue@balanceacupuncture.uk">sue@balanceacupuncture.uk</a></li>
+          <li><a href="contact.html">Find My Clinics</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2025 Balance Acupuncture. All rights reserved.</span>
+      <span>Member of the British Acupuncture Council (BAcC)</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
