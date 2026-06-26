@@ -349,7 +349,6 @@
         -->
         <form
           id="contact-form"
-          action="https://formspree.io/f/YOUR_FORM_ID"
           method="POST"
           novalidate
         >
@@ -620,25 +619,50 @@
     document.getElementById('nav-links').classList.toggle('open');
   });
 
-  // Form submission via Formspree (AJAX)
+  // Form submission to CMS
   const form = document.getElementById('contact-form');
   const successMsg = document.getElementById('form-success');
   const errorMsg = document.getElementById('form-error');
+
+  const CMS_ENDPOINT = 'https://cms-agency-online.vercel.app/api/webhooks/form';
+  const FORM_ID = 'cmqutd7py0001izifu5nyf71v';
+  const TENANT_ID = 'cmqtobhyz0000jy04oty5v97d';
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     successMsg.style.display = 'none';
     errorMsg.style.display = 'none';
 
+    if (form._gotcha && form._gotcha.value) return;
+
     const btn = form.querySelector('button[type="submit"]');
     btn.textContent = 'Sending…';
     btn.disabled = true;
 
+    const fullName = (form.first_name.value + ' ' + form.last_name.value).trim();
+
     try {
-      const res = await fetch(form.action, {
+      const res = await fetch(CMS_ENDPOINT, {
         method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          formId: FORM_ID,
+          tenantId: TENANT_ID,
+          data: {
+            name: fullName,
+            first_name: form.first_name.value,
+            last_name: form.last_name.value,
+            email: form.email.value,
+            phone: form.phone.value,
+            preferred_location: form.preferred_location.value,
+            treatment: form.treatment.value,
+            message: form.message.value,
+          },
+          metadata: {
+            pageUrl: window.location.href,
+            referrer: document.referrer,
+          },
+        }),
       });
 
       if (res.ok) {
